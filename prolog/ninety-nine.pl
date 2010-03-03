@@ -79,3 +79,15 @@ test(my_reverse) :-
 
 :- end_tests(p05).
 
+% P06 (*) Find out whether a list is a palindrome.
+% A palindrome can be read forward or backward; e.g. [x,a,m,a,x].
+is_palindrome(L) :- my_reverse(L, L).
+
+:- begin_tests(p06).
+
+test(is_palindrome) :-
+        is_palindrome([]),
+        is_palindrome([a]),
+        is_palindrome([x,a,m,a,x]),
+
+:- end_tests(p06).
