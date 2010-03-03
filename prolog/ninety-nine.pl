@@ -23,3 +23,8 @@ element_at(X, [_|T], K) :- K > 1, J is K - 1, element_at(X, T, J).
 % P04 (*) Find the number of elements of a list.
 number_of_elements(0, []).
 number_of_elements(X, [_|T]) :- number_of_elements(Y, T), X is Y + 1.
+
+% P05 (*) Reverse a list.
+revAcc([], X, X).
+revAcc([H|T],Acc, Y) :- NewAcc = [H|Acc], revAcc(T, NewAcc, Y).
+my_reverse(X, Y) :- revAcc(X, [], Y).
