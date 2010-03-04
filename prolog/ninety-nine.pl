@@ -105,3 +105,25 @@ test(is_palindrome) :-
 test(is_palindrome, [fail]) :- is_palindrome([a,b]).
 
 :- end_tests(p06).
+
+% P07 (**) Flatten a nested list structure.
+% Transform a list, possibly holding lists as elements into a `flat' list by replacing each list with its elements (recursively).
+%
+% Example:
+% ?- my_flatten([a, [b, [c, d], e]], X).
+% X = [a, b, c, d, e]
+%
+% Hint: Use the predefined predicates is_list/1 and append/3
+
+:- begin_tests(p07).
+
+test(my_flatten, [blocked(unimplemented)]) :-
+        my_flatten([], []),
+        my_flatten([a], []),
+        my_flatten([[a]], [a]),
+        my_flatten([a, [b]], [a, b]),
+        my_flatten([a, [b, [c, d], e]], [a, b, c, d, e]).
+
+test(my_flatten, [blocked(unimplemented), fail]) :- my_flatten([[a]], [a]).
+
+:- end_tests(p07).
