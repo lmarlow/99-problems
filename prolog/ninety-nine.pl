@@ -11,7 +11,7 @@ my_last(R, [_|T]) :- my_last(R, T).
 
 :- begin_tests(p01).
 
-test(my_last) :-
+test(my_last, [nondet]) :-
         my_last(b, [a,b]),
         my_last(a, [a]).
 
@@ -26,7 +26,7 @@ my_last_but_one(R, [_|T]) :- my_last_but_one(R, T).
 
 :- begin_tests(p02).
 
-test(my_last_but_one) :-
+test(my_last_but_one, [nondet]) :-
         my_last_but_one(a, [a,b]),
         my_last_but_one(c, [a,b,c,d]).
 
@@ -45,7 +45,7 @@ element_at(R, [_|T], K) :- K > 1, J is K - 1, element_at(R, T, J).
 
 :- begin_tests(p03).
 
-test(element_at) :-
+test(element_at, [nondet]) :-
         element_at(a, [a,b,c], 1),
         element_at(b, [a,b,c], 2),
         element_at(c, [a,b,c], 3).
@@ -62,7 +62,7 @@ number_of_elements(R, [_|T]) :- number_of_elements(Y, T), R is Y + 1.
 
 :- begin_tests(p04).
 
-test(number_of_elements) :-
+test(number_of_elements, [nondet]) :-
         number_of_elements(0, []),
         number_of_elements(1, [a]),
         number_of_elements(2, [a,b]),
