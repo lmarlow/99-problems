@@ -114,16 +114,19 @@ test(is_palindrome, [fail]) :- is_palindrome([a,b]).
 % X = [a, b, c, d, e]
 %
 % Hint: Use the predefined predicates is_list/1 and append/3
+my_flatten([], []).
+my_flatten([H|T], R) :- is_list(H), my_flatten(H, FlatH), my_flatten(T, FlatT), append(FlatH, FlatT, R).
+my_flatten([H|T], R) :- \+ is_list(H), my_flatten(T, FlatT), append([H], FlatT, R).
 
 :- begin_tests(p07).
 
-test(my_flatten, [blocked(unimplemented)]) :-
+test(my_flatten, [nondet]) :-
         my_flatten([], []),
-        my_flatten([a], []),
+        my_flatten([a], [a]),
         my_flatten([[a]], [a]),
         my_flatten([a, [b]], [a, b]),
         my_flatten([a, [b, [c, d], e]], [a, b, c, d, e]).
 
-test(my_flatten, [blocked(unimplemented), fail]) :- my_flatten([[a]], [a]).
+test(my_flatten, [fail]) :- my_flatten([[a]], [[a]]).
 
 :- end_tests(p07).
