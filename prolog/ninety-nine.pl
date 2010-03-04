@@ -15,6 +15,8 @@ test(my_last) :-
         my_last(b, [a,b]),
         my_last(a, [a]).
 
+test(my_last, [fail]) :- my_last(a, [a, b]).
+
 :- end_tests(p01).
 
 
@@ -27,6 +29,8 @@ my_last_but_one(R, [_|T]) :- my_last_but_one(R, T).
 test(my_last_but_one) :-
         my_last_but_one(a, [a,b]),
         my_last_but_one(c, [a,b,c,d]).
+
+test(my_last_but_one, [fail]) :- my_last_but_one(a, [b, a]).
 
 :- end_tests(p02).
 
@@ -46,6 +50,9 @@ test(element_at) :-
         element_at(b, [a,b,c], 2),
         element_at(c, [a,b,c], 3).
 
+test(element_at, [fail]) :- element_at(a, [b], 1).
+test(element_at, [fail]) :- element_at(a, [b, a], 1).
+
 :- end_tests(p03).
 
 
@@ -60,6 +67,9 @@ test(number_of_elements) :-
         number_of_elements(1, [a]),
         number_of_elements(2, [a,b]),
         number_of_elements(7, [a,b,c,d,e,f,g]).
+
+test(number_of_elements, [fail]) :- number_of_elements(1, [a,b]).
+test(number_of_elements, [fail]) :- number_of_elements(0, [a]).
 
 :- end_tests(p04).
 
@@ -77,6 +87,8 @@ test(my_reverse) :-
         my_reverse([a,b], [b,a]),
         my_reverse([a,b,c,[a],s,w,t], [t, w, s, [a], c, b, a]).
 
+test(my_reverse, [fail]) :- my_reverse([a,b,c], [c,a,b]).
+
 :- end_tests(p05).
 
 % P06 (*) Find out whether a list is a palindrome.
@@ -88,6 +100,8 @@ is_palindrome(L) :- my_reverse(L, L).
 test(is_palindrome) :-
         is_palindrome([]),
         is_palindrome([a]),
-        is_palindrome([x,a,m,a,x]),
+        is_palindrome([x,a,m,a,x]).
+
+test(is_palindrome, [fail]) :- is_palindrome([a,b]).
 
 :- end_tests(p06).
